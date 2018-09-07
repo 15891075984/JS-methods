@@ -1,0 +1,11 @@
+function parseQueryStr(queryStr){
+    let queryData={};
+    let queryStrList = queryStr.split('&');
+    for( let [index,queryStr] of queryStrList.entries() ){
+        let itemList = queryStr.split('=');
+        console.log(index+"       "+queryStr);
+        console.log(itemList);
+        queryData[itemList[0]] = decodeURIComponent(itemList[1]);
+    } 
+    return queryData
+}
