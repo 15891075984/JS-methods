@@ -7,3 +7,26 @@ function parseQueryStr(queryStr){
     } 
     return queryData
 }
+
+
+
+
+
+
+//解析查询字符串location.search
+function getQueryStringArgs(){
+            let qs=location.search.length>0?location.search.substring(1):"";
+            let args={};
+            let items=qs.length>0?qs.split("&"):[];
+            console.log(items);
+            let item=null,len=items.length,i=0,name=null,value=null;
+            for(i=0;i<len;i++){
+                item=items[i].split('=');
+                name=decodeURIComponent(item[0]);
+                value=decodeURIComponent(item[1]);
+                if(name.length){
+                    args[name]=value;
+                }
+            }
+            return args;
+        }
