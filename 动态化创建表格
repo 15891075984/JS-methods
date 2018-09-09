@@ -1,0 +1,20 @@
+let table=document.createElement("table");
+        table.border=1;
+        table.width="100%";
+        let tbody=document.createElement("tbody");
+        table.appendChild(tbody);
+        tbody.insertRow(0);//行
+        tbody.rows[0].insertCell(0);//列
+        tbody.rows[0].cells[0].appendChild(document.createTextNode('CELL 1,1'));
+        tbody.rows[0].insertCell(1);
+        tbody.rows[0].cells[1].appendChild(document.createTextNode('cell 2,1'));
+        tbody.insertRow(1);
+        tbody.rows[1].insertCell(0);
+        tbody.rows[1].cells[0].appendChild(document.createTextNode('CELL 1,1'));
+        tbody.rows[1].insertCell(1);
+        tbody.rows[1].cells[1].appendChild(document.createTextNode('cell 2,1'));
+        tbody.rows[1].insertCell(2);
+        tbody.rows[1].cells[2].appendChild(document.createTextNode('CELL 1,1'));
+        tbody.rows[1].insertCell(3);
+        tbody.rows[1].cells[3].appendChild(document.createTextNode('cell 2,1'));
+        div1.appendChild(table)
