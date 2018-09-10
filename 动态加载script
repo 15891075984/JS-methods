@@ -1,0 +1,20 @@
+
+function loadScript(url,callback){
+    const script=document.createElement('script');
+    script.type='text/javascript';
+    //处理IE
+    if(script.readyState){
+        script.onreadystatechange=function(){
+            if(script.readyState==='loaded'||script.readyState==='complete'){
+                script.onreadystatechange=null;
+                callback();
+            }
+        }
+    }else{
+        script.onload=function(){
+            callback();
+        }
+    }
+    script.src=url;
+    document.body.append(script);
+}
