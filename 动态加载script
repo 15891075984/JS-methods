@@ -18,3 +18,7 @@ function loadScript(url,callback){
     script.src=url;
     document.body.append(script);
 }
+
+  loadScript('file.js', function () {
+    console.log('加载完成');
+  })
