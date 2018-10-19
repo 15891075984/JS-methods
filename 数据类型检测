@@ -1,0 +1,14 @@
+var class2type={}
+"Boolean Number String Function Array Date RegExp Object Error Null Undefined".split(" ").map((item,index)=>{
+	return class2type[`[object ${item}]`]=item.toLowerCase()
+})
+//返回数组class2type，形如[object Array]:"array"
+
+const type=(obj)=>{
+	return typeof obj==='object'||typeof obj==='function'?
+	class2type[Object.prototype.toString.call(obj)]||object:typeof obj
+}
+function isnull(obj){
+	return type(obj)==="null"
+}
+isnull(null)
