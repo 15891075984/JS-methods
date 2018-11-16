@@ -1,0 +1,30 @@
+function addEvent(element,type,callback,useCapture){
+                //添加事件
+                if(element.addEventListener){
+                    element.addEventListener(type,callback,!!useCapture)
+                }else{
+                    element.attachEvent('on'+type,callback)
+                }
+                return callback
+            }
+            function removeEvent(element,type,callback,useCapture){
+                //取消事件
+                if(element.addEventListener){
+                    element.removeEventListener(type,callback,!!useCapture)
+                }else{
+                    element.detachEvent('on'+type,callback)
+                }
+            }
+            function fireEvent(element,type,args,event){
+                if(element.dispatchEvent){
+                    event.document.createElement("HTMLEvents");
+                    event.initEvent(type,true,true);
+                }else{
+                    event=document.createEventObject()
+                }
+                if(element.dispatchEvent){
+                    element.dispatchEvent(event)
+                }else{
+                    element.fireEvent('on'+type,event)
+                }
+            }
