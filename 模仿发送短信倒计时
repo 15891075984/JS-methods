@@ -1,0 +1,18 @@
+  <button>点击发送短信</button>
+        <script>
+            let btn=document.getElementsByTagName('button')[0];
+            btn.addEventListener('click',function(){
+                let i=3;
+                let intervalu=setInterval(function(){
+                    if(i<=0){
+                        window.clearInterval(intervalu)
+                        btn.disabled=""
+                        btn.innerHTML="点击重新发送短信"
+                    }else{
+                        btn.disabled="true"
+                        i--;
+                        btn.innerHTML=i+"后重新发送短信"
+                    } 
+                },1000)
+            })
+        </script>
