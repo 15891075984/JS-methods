@@ -1,0 +1,123 @@
+let salesOffices={};
+         salesOffices.clientList=[];
+         salesOffices.listen=function(fn){
+             this.clientList.push(fn)
+         }
+         salesOffices.triggle=function(){
+             for(let i=0,fn;fn=this.clientList[i];i++){
+                 fn.apply(this,arguments)
+             }
+         }
+         salesOffices.listen(function(price,sq){
+             console.log(price+"  :  "+sq)
+         })
+         salesOffices.listen(function(price,sq){
+             console.log(price+"  :  "+sq)
+         })
+         salesOffices.listen(function(price,sq){
+             console.log(price+"  :  "+sq)
+         })
+         salesOffices.triggle(20000,18);
+         
+         
+         
+         
+         
+         
+         
+         //添加key 只能自己订阅自己的事件
+                  let salesOffices={};
+         salesOffices.clientList=[];
+         salesOffices.listen=function(key,fn){
+             if(!this.clientList[key]){
+                 this.clientList[key]=[]
+             }
+             this.clientList[key].push(fn)
+         }
+         salesOffices.trigger=function(){
+             
+             var key=Array.prototype.shift.call(arguments);//拿到key，获取这个函数的第一个参数key  ，shift从前面剪去一个数据
+                 fns=this.clientList[key];
+            if(!fns){
+                return false
+            }
+            for(var i=0,fn;fn=fns[i++];){
+                fn.apply(this,arguments)
+            }
+         }
+         salesOffices.listen("80",function(price){
+             console.log("小红价格="+price)
+         })
+         salesOffices.listen("100",function(price){
+             console.log("小黑价格="+price)
+         })
+         salesOffices.trigger("80",20000)
+         salesOffices.trigger("80",20000)
+         salesOffices.trigger("100",20000000)
+         
+         
+         
+         
+         
+         
+        取消订阅的事件，把功能分开，只用传入对象就可以用 
+         
+         let event={
+             clientList:[],
+             listen(key,fn){
+                if(!this.clientList[key]){
+                    this.clientList[key]=[]
+                }
+                this.clientList[key].push(fn)
+             },
+             trigger(){
+                 var key=Array.prototype.shift.call(arguments);
+                     fns=this.clientList[key];
+                if(!fns||fns.length===0){
+                    return false
+                }
+                for(let i=0,fn;fn=fns[i++];){
+                    console.log(i)
+                    fn.apply(this,arguments)
+                }
+                // for(let i=0;i<=fns.length;i++){
+                //     fns[i].apply(this,arguments)
+                // }
+             }
+         }
+         event.remove=function(key,fn){
+             var fns=this.clientList[key];
+             if(!fns){
+                 return false
+             }
+             if(!fn){
+                 fns&&(fns.length=0)
+             }else{
+                 for(var l=fns.length-1;l>=0;l--){
+                     var _fn=fns[l];
+                     if(_fn===fn){
+                         fns.splice(l,1)
+                     }
+                 }
+             }
+         }
+         var installEvent=function(obj){
+             for(var i in event){
+                 obj[i]=event[i]
+             }
+         }
+         var salesOffices={};
+         installEvent(salesOffices)
+
+         salesOffices.listen("80",function(price){
+             console.log("小红价格="+price)
+         })
+         salesOffices.listen("100",function(price){
+             console.log("小黑价格="+price)
+         })
+         salesOffices.listen("100",function(price){
+             console.log("小黑价格="+price)
+         })
+         salesOffices.trigger("80",20000)
+         salesOffices.trigger("80",20000)
+         salesOffices.trigger("100",20000000)
